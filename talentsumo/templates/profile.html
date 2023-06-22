@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Profile</h1>
+  <p>Welcome, {{ user.username }}!</p>
+  <ul>
+    <li><a href="{% url 'create_note' %}">Create Note</a></li>
+    <li><a href="{% url 'view_all_notes' %}">All Notes</a></li>
+
+    {% comment %} <li><a href="{% url 'view_note' note.id %}">View Note</a></li>
+    <li><a href="{% url 'edit_note' note.id %}">Edit Note</a></li>
+    <li><a href="{% url 'share_note' note.id %}">Share Note</a></li>
+    <li><a href="{% url 'login' %}">Login</a></li> {% endcomment %}
+    <li><a href="{% url 'profile' %}">Profile</a></li>
+  </ul>
+{% endblock %}

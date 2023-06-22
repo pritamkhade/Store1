@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Create Note</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="note_type">Note Type:</label><br>
+    <select id="note_type" name="note_type" onchange="updateNoteType()">
+      <option value="text">Text</option>
+      <option value="audio">Audio</option>
+      <option value="video">Video</option>
+    </select><br>
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <div id="text_inputs">
+      <label for="content">Content:</label><br>
+      <textarea id="content" name="content"></textarea><br>
+    </div>
+    <div id="audio_inputs" style="display: none;">
+      <label for="audio">Audio:</label><br>
+      <input type="file" id="audio" name="audio"><br>
+    </div>
+    <div id="video_inputs" style="display: none;">
+      <label for="video">Video:</label><br>
+      <input type="file" id="video" name="video"><br>
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+  <script>
+    function updateNoteType() {
+      var noteType = document.getElementById('note_type').value;
+      if (noteType === 'text') {
+        document.getElementById('text_inputs').style.display = 'block';
+        document.getElementById('audio_inputs').style.display = 'none';
+        document.getElementById('video_inputs').style.display = 'none';
+      } else if (noteType === 'audio') {
+        document.getElementById('text_inputs').style.display = 'none';
+        document.getElementById('audio_inputs').style.display = 'block';
+        document.getElementById('video_inputs').style.display = 'none';
+      } else if (noteType === 'video') {
+        document.getElementById('text_inputs').style.display = 'none';
+        document.getElementById('audio_inputs').style.display = 'none';
+        document.getElementById('video_inputs').style.display = 'block';
+      }
+    }
+  </script>
+{% endblock %}

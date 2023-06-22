@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Edit Note</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" value="{{ note.title }}"><br>
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content">{{ note.content }}</textarea><br>
+    <label for="audio">Audio:</label><br>
+    <input type="file" id="audio" name="audio"><br>
+    {% if note.audio %}
+      <audio controls>
+        <source src="{{ note.audio.url }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio><br>
+    {% endif %}
+    <label for="video">Video:</label><br>
+    <input type="file" id="video" name="video"><br>
+    {% if note.video %}
+      <video controls>
+        <source src="{{ note.video.url }}" type="video/mp4">
+        Your browser does not support the video element.
+      </video><br>
+    {% endif %}
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}

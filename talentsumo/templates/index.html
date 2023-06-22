@@ -1,0 +1,9 @@
+{% extends 'baseone.html' %}
+
+{% block content %}
+  <h1>Welcome to My Django Project</h1>
+  <ul>
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li><a href="{% url 'signup' %}">Sign up</a></li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ note.title }}</h1>
+  {% if note_type == 'text' %}
+    <p>{{ note.content }}</p>
+  {% elif note_type == 'audio' %}
+    <audio controls>
+      <source src="{{ note.audio.url }}" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  {% elif note_type == 'video' %}
+    <video controls>
+      <source src="{{ note.video.url }}" type="video/mp4">
+      Your browser does not support the video element.
+    </video>
+  {% endif %}
+  <a href="{% url 'edit_note' note.id %}">Edit</a>
+  <a href="{% url 'share_note' note.id %}">Share</a>
+{% endblock %}
